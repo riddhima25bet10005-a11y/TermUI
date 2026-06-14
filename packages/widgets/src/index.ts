@@ -86,8 +86,6 @@ export { GanttChart } from './data/GanttChart.js';
 export type { GanttChartOptions, GanttTask } from './data/GanttChart.js';
 
 // ── Layout Widgets ────────────────────────────────────
-
-
 export { Grid } from './layout/Grid.js';
 export type { GridOptions } from './layout/Grid.js';
 export { ScrollView } from './layout/ScrollView.js';

@@ -7,11 +7,14 @@ export interface DraggableProps {
     children?: VNode | VNode[];
 }
 
+let currentlyDraggedId: string | null = null;
+
 export function Draggable({ id, onDragStart, children }: DraggableProps) {
     return createElement(
         'box',
         {
             onMouseDown: () => {
+                currentlyDraggedId = id;
                 if (onDragStart) onDragStart();
             }
         },
@@ -30,9 +33,10 @@ export function Droppable({ id, onDrop, children }: DroppableProps) {
         'box',
         {
             onMouseUp: () => {
-                // In a real implementation we would track the currently dragged item.
-                // This is a minimal stub for the drop zone.
-                if (onDrop) onDrop('mock-dragged-id');
+                if (onDrop && currentlyDraggedId !== null) {
+                    onDrop(currentlyDraggedId);
+                }
+                currentlyDraggedId = null; // Reset after drop
             }
         },
         children
